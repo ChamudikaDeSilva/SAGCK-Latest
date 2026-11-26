@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f9ff;
+  --foreground: #0c1b4d;
+  --darkblue-primary: #162a70;
+  --lightblue-accent: #299ee0;
+  --yellow-accent: #f2be1a;
+  --surface-tint: #eaf1fb;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Dark Blue (Primary School Color matching logo.jpeg crest) */
+  --color-navy-950: #060e2a;
+  --color-navy-900: #0c1b4d;
+  --color-navy-800: #162a70;
+  --color-navy-700: #203c94;
+  --color-navy-100: #e5ecff;
+
+  /* Light Blue (Secondary School Color) */
+  --color-sky-600: #0c74b0;
+  --color-sky-500: #299ee0;
+  --color-sky-400: #5bc0f8;
+  --color-sky-300: #8ed5fb;
+  --color-sky-100: #e3f4fe;
+
+  /* School Yellow / Gold (Third School Color) */
+  --color-gold-600: #b88600;
+  --color-gold-500: #f2be1a;
+  --color-gold-400: #ffd43b;
+  --color-gold-300: #ffe066;
+  --color-gold-200: #fff0ad;
+  --color-gold-50: #fffbe6;
+
+  /* Crisp Alabaster / Soft Sky-Porcelain Light Surfaces */
+  --color-ivory-50: #ffffff;
+  --color-ivory-100: #f6f9ff;
+  --color-ivory-200: #eaf1fb;
+  --color-ivory-300: #d1def0;
+
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-sinhala: var(--font-noto-sinhala), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto;
+  background-color: #f6f9ff;
+  color: #0c1b4d;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #162a70;
+  color: #ffd43b;
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 46s linear infinite;
+  will-change: transform;
+}
+
+.marquee-group:hover .animate-marquee-left,
+.marquee-group:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+  }
+}
+
+/* Custom architectural grid pattern in light blue & yellow */
+.bg-heritage-grid {
+  background-image:
+    linear-gradient(to right, rgba(41, 158, 224, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 158, 224, 0.08) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.bg-dark-heritage-grid {
+  background-image:
+    linear-gradient(to right, rgba(91, 192, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 212, 59, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
